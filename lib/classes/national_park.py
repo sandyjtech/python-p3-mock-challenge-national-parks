@@ -2,8 +2,10 @@ from classes.trip import Trip
 
 
 class NationalPark:
+    all = []
     def __init__(self, name):
         self.name = name
+        NationalPark.all.append(self)
 
     @property
     def name(self):
@@ -23,14 +25,31 @@ class NationalPark:
         return [*set([trip.visitor for trip in self.trips()])]
 
     def total_visits(self):
-        pass
+        #if start is passed today?
+        return len(self.trips())
 
     def best_visitor(self):
-        pass
+        all_visitors = [trip.visitor for trip in self.trips()]
+        visitor_counts = {}  
 
+        
+        for visitor in all_visitors:
+            visitor_counts[visitor] = visitor_counts.get(visitor, 0) + 1
+
+        best_visitor = None
+        max_visits = 0
+
+        for visitor, count in visitor_counts.items():
+            if count > max_visits:
+                best_visitor = visitor
+                max_visits = count
+
+        return best_visitor
+                  
     @classmethod
     def most_visited(cls):
-        pass
+        return max(cls.all, key=lambda national_park: national_park.total_visits())
+
 
     def __repr__(self):
         return f"<Park: {self.name}>" 
