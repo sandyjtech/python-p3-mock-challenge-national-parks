@@ -17,10 +17,10 @@ class NationalPark:
             raise Exception
     
     def trips(self):
-        pass
+        return [trip for trip in Trip.all if trip.national_park == self]
 
     def visitors(self):
-        pass
+        return [*set([trip.visitor for trip in self.trips()])]
 
     def total_visits(self):
         pass
@@ -31,3 +31,6 @@ class NationalPark:
     @classmethod
     def most_visited(cls):
         pass
+
+    def __repr__(self):
+        return f"<Park: {self.name}>" 
