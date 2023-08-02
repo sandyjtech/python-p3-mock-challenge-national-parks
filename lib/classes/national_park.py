@@ -29,21 +29,14 @@ class NationalPark:
         return len(self.trips())
 
     def best_visitor(self):
+        #returns visitor with most trips
         all_visitors = [trip.visitor for trip in self.trips()]
-        visitor_counts = {}  
+        visitor_counts = {}
 
-        
         for visitor in all_visitors:
             visitor_counts[visitor] = visitor_counts.get(visitor, 0) + 1
 
-        best_visitor = None
-        max_visits = 0
-
-        for visitor, count in visitor_counts.items():
-            if count > max_visits:
-                best_visitor = visitor
-                max_visits = count
-
+        best_visitor = max(visitor_counts, key=lambda visitor: visitor_counts[visitor])
         return best_visitor
                   
     @classmethod

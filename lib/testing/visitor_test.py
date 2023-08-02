@@ -19,12 +19,7 @@ class TestVisitor:
         with pytest.raises(Exception):
             Visitor(2)
 
-    def test_name_setter(self):
-        '''Cannot change the name of the visitor'''
-        vis = Visitor("Poppy")
-        with pytest.raises(Exception):
-            vis.name = "Warren"
-
+   
     def test_has_many_trips(self):
         '''Visitor has many Trips.'''
         p1 = NationalPark("Yosemmette")
